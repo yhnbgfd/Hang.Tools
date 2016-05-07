@@ -1,10 +1,10 @@
-﻿using Hang.Net4.Interfaces;
+﻿using Hang.Net4.Base.Enums;
+using Hang.Net4.Base.Interfaces;
 using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using F = System.Windows.Forms;
-using Hang.Net4.Enums;
 
 namespace Hang.Tools.Views.Pages
 {

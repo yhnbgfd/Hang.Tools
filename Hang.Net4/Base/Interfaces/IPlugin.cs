@@ -1,7 +1,7 @@
-﻿using Hang.Net4.Enums;
+﻿using Hang.Net4.Base.Enums;
 using System;
 
-namespace Hang.Net4.Interfaces
+namespace Hang.Net4.Base.Interfaces
 {
     /// <summary>
     /// 
