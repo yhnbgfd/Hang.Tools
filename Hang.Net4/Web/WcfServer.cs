@@ -12,12 +12,7 @@ namespace Hang.Net4.Web
     {
         private ServiceHost _host;
 
-        public WcfServer()
-        {
-
-        }
-
-        public bool Create(string address, Type implementedContract)
+        public WcfServer(string address, Type implementedContract)
         {
             try
             {
@@ -35,14 +30,11 @@ namespace Hang.Net4.Web
 
                 _host.AddServiceEndpoint(implementedContract, binding, address);
                 _host.Description.Behaviors.Add(behavior);
-
-                return true;
             }
             catch (CommunicationException)
             {
                 _host.Abort();
                 _host = null;
-                return false;
             }
         }
 
