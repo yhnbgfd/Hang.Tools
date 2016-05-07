@@ -12,21 +12,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Hang.Tools
+namespace Hang.Tools.Views.Pages
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for Page_SocketClient.xaml
+    /// </summary>
+    public partial class Page_SocketClient : Page
     {
-        public MainWindow()
+        public Page_SocketClient()
         {
             InitializeComponent();
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            TabItem_Home.Content = new Frame
-            {
-                Content = new Views.Pages.Page_SocketServer()
-        };
     }
-}
 }

@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hang.Tools"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Hang.Tools" Height="350" Width="525" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu VerticalAlignment="Top">
+            <MenuItem Header="文件">
+                <MenuItem Header="退出"/>
+            </MenuItem>
+            <MenuItem Header="编辑">
+            </MenuItem>
+            <MenuItem Header="帮助">
+                <MenuItem Header="关于"/>
+            </MenuItem>
+        </Menu>
+        <TabControl x:Name="TabControl_Main" Grid.Row="1">
+            <TabItem x:Name="TabItem_Home" Header="主页"/>
+        </TabControl>
     </Grid>
 </Window>
