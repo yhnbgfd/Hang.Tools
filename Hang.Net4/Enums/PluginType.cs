@@ -7,6 +7,7 @@ namespace Hang.Net4.Enums
 {
     public enum PluginType
     {
-        SystemWindowsPage,
+        UnKnow,
+        Page,
     }
 }

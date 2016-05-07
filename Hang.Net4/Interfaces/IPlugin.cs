@@ -1,8 +1,5 @@
 ﻿using Hang.Net4.Enums;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Hang.Net4.Interfaces
 {
@@ -12,14 +9,14 @@ namespace Hang.Net4.Interfaces
     public interface IPlugin
     {
         /// <summary>
-        /// 
+        /// 注册
         /// </summary>
         /// <returns></returns>
         Tuple<PluginType, object> Register();
         /// <summary>
-        /// 
+        /// 注销
         /// </summary>
         /// <returns></returns>
-        bool UnRegister();
+        Tuple<bool, object> UnRegister();
     }
 }
