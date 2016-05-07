@@ -48,6 +48,9 @@
     <Compile Include="Base\Interfaces\IBaseServiceContract.cs" />
     <Compile Include="Base\Interfaces\IPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\NLogExtend.cs" />
+    <Compile Include="Utilities\UtilityConvert.cs" />
+    <Compile Include="Web\SocketServer.cs" />
     <Compile Include="Web\WcfClient.cs" />
     <Compile Include="Web\WcfServer.cs" />
   </ItemGroup>

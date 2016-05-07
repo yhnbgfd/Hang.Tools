@@ -20,7 +20,7 @@ namespace Hang.Net4.Web
 
                 Binding binding = new WSHttpBinding(SecurityMode.None)
                 {
-                    MaxReceivedMessageSize = 2147483647
+                    MaxReceivedMessageSize = long.MaxValue
                 };
                 ServiceMetadataBehavior behavior = new ServiceMetadataBehavior
                 {
