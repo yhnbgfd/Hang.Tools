@@ -7,5 +7,9 @@
         /// System.Windows.Controls.Page
         /// </summary>
         Page,
+        /// <summary>
+        /// Hang.Net4.Base.Interfaces.IPlugin
+        /// </summary>
+        IPlugin,
     }
 }
