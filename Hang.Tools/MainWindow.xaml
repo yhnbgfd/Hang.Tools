@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hang.Tools"
         mc:Ignorable="d"
-        Title="Hang.Tools" Height="350" Width="525" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="Hang.Tools" Height="450" Width="625" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

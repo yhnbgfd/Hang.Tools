@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Hang.Net4.Base.Enums
+﻿namespace Hang.Net4.Base.Enums
 {
     public enum PluginType
     {
         UnKnow,
+        /// <summary>
+        /// System.Windows.Controls.Page
+        /// </summary>
         Page,
     }
 }

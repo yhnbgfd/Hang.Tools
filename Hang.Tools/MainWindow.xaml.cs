@@ -1,32 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Hang.Tools
 {
     public partial class MainWindow : Window
     {
+        public static Action<string, object> ShowPage;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        public static void OnShowPage(string name, object obj)
+        {
+            ShowPage?.Invoke(name, obj);
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            ShowPage += NewTabItem;
+
             TabItem_Home.Content = new Frame
             {
-                Content = new Views.Pages.Page_SocketServer()
-        };
+                Content = new Views.Pages.Page_Home(),
+                FocusVisualStyle = null,
+                NavigationUIVisibility = NavigationUIVisibility.Hidden,
+            };
+        }
+
+        private void NewTabItem(string name, object obj)
+        {
+            TabControl_Main.Items.Add(new TabItem
+            {
+                Header = name,
+                Content = new Frame
+                {
+                    Content = (Page)obj,
+                    FocusVisualStyle = null,
+                    NavigationUIVisibility = NavigationUIVisibility.Hidden
+                },
+                IsSelected = true,
+            });
+        }
+
     }
-}
 }

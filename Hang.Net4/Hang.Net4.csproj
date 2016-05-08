@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\Attributes\PluginAttribute.cs" />
     <Compile Include="Base\Enums\PluginType.cs" />
     <Compile Include="Base\Interfaces\IBaseServiceContract.cs" />
     <Compile Include="Base\Interfaces\IPlugin.cs" />

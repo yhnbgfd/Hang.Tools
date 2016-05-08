@@ -1,4 +1,7 @@
-﻿using Hang.Net4.Web;
+﻿using Hang.Net4.Base.Attributes;
+using Hang.Net4.Base.Enums;
+using Hang.Net4.Base.Interfaces;
+using Hang.Net4.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +19,13 @@ using System.Windows.Shapes;
 
 namespace Hang.Tools.Views.Pages
 {
+    [Plugin(Name = "Socket服务器", Type = PluginType.Page)]
     public partial class Page_SocketServer : Page
     {
         public Page_SocketServer()
         {
             InitializeComponent();
-        }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
             try
             {
                 SocketServer ss = new SocketServer("0.0.0.0", 9191, handle);
@@ -32,18 +33,23 @@ namespace Hang.Tools.Views.Pages
                 //Thread.Sleep(100);
                 //ss.Dispose();
                 //ss = new SocketServer("0.0.0.0", 9191, handle);
-                ss.Start();
+                //ss.Start();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("# "+ex.ToString());
-                //throw;
+
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private byte[] handle(List<byte> arg)
         {
             return Encoding.UTF8.GetBytes("handle");
         }
+
     }
 }

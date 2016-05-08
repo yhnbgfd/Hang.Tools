@@ -18,5 +18,7 @@ namespace Hang.Net4.Base.Interfaces
         /// </summary>
         /// <returns></returns>
         Tuple<bool, object> UnRegister();
+
+        //event 
     }
 }

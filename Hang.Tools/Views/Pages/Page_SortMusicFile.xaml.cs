@@ -1,5 +1,5 @@
-﻿using Hang.Net4.Base.Enums;
-using Hang.Net4.Base.Interfaces;
+﻿using Hang.Net4.Base.Attributes;
+using Hang.Net4.Base.Enums;
 using System;
 using System.IO;
 using System.Windows;
@@ -8,7 +8,8 @@ using F = System.Windows.Forms;
 
 namespace Hang.Tools.Views.Pages
 {
-    public partial class Page_SortMusicFile : Page, IPlugin
+    [Plugin(Name = "SortMusicFile", Type = PluginType.Page)]
+    public partial class Page_SortMusicFile : Page
     {
         /// <summary>
         /// 整理音乐文件
@@ -16,16 +17,6 @@ namespace Hang.Tools.Views.Pages
         public Page_SortMusicFile()
         {
             InitializeComponent();
-        }
-
-        public Tuple<PluginType, object> Register()
-        {
-            return new Tuple<PluginType, object>(PluginType.Page, this);
-        }
-
-        public Tuple<bool, object> UnRegister()
-        {
-            return new Tuple<bool, object>(true, null);
         }
 
         /// <summary>
