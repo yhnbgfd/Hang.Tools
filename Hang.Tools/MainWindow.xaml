@@ -22,7 +22,7 @@
             </MenuItem>
         </Menu>
         <TabControl x:Name="TabControl_Main" Grid.Row="1">
-            <TabItem x:Name="TabItem_Home" Header="主页"/>
+            <TabItem x:Name="TabItem_Home" Header="主页" Height="30" Margin="-2,0"/>
         </TabControl>
     </Grid>
 </Window>

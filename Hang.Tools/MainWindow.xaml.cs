@@ -40,8 +40,10 @@ namespace Hang.Tools
                 {
                     Content = (Page)obj,
                     FocusVisualStyle = null,
-                    NavigationUIVisibility = NavigationUIVisibility.Hidden
+                    NavigationUIVisibility = NavigationUIVisibility.Hidden,
                 },
+                Height = 30,
+                Margin = new Thickness(-2, 0, -2, -0),
                 IsSelected = true,
             });
         }
