@@ -21,7 +21,7 @@ namespace Hang.Net4.Web
             EndpointAddress endpoint = new EndpointAddress(address);
             Binding binding = new WSHttpBinding(SecurityMode.None)
             {
-                MaxReceivedMessageSize = long.MaxValue
+                MaxReceivedMessageSize = int.MaxValue
             };
             return ChannelFactory<TChannel>.CreateChannel(binding, endpoint);
         }

@@ -25,10 +25,8 @@ namespace Hang.Tools.Views.Pages
         {
             InitializeComponent();
 
-            using (WcfServer ws = new WcfServer("127.0.0.1", 8888, typeof(Test), typeof(IBaseServiceContract)))
-            {
-                ws.Open();
-            }
+            WcfServer ws = new WcfServer("127.0.0.1", 8888, typeof(Test), typeof(IBaseServiceContract));
+            ws.Open();
         }
     }
 

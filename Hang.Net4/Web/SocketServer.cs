@@ -49,7 +49,7 @@ namespace Hang.Net4.Web
         public int SendTimeout { get; set; }
 
         /// <summary>
-        /// 
+        /// Socket Server
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
