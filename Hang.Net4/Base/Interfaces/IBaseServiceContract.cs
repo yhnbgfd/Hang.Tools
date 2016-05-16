@@ -2,7 +2,7 @@
 
 namespace Hang.Net4.Base.Interfaces
 {
-    [ServiceContract(Name = "BaseService")]
+    [ServiceContract]
     public interface IBaseServiceContract
     {
         [OperationContract]
