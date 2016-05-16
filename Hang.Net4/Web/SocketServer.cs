@@ -15,29 +15,6 @@ namespace Hang.Net4.Web
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
         private readonly object _lock = new object();
 
-        private readonly string _ip;
-        private readonly int _port;
-        /// <summary>
-        /// 数据接收后处理程序
-        /// </summary>
-        private readonly Func<List<byte>, byte[]> _dataReceiveHandle;
-        /// <summary>
-        /// 数据接收时验证是否接收完毕
-        /// </summary>
-        private readonly Func<List<byte>, bool> _dataCompleteVerify;
-        /// <summary>
-        /// 每次接收的长度
-        /// </summary>
-        private readonly int _capacity;
-        /// <summary>
-        /// 接收超时
-        /// </summary>
-        private readonly int _receiveTimeout;
-        /// <summary>
-        /// 发送超时
-        /// </summary>
-        private readonly int _sendTimeout;
-
         private bool _disposed = false;
         /// <summary>
         /// 当前客户端连接数量
@@ -47,6 +24,29 @@ namespace Hang.Net4.Web
         /// Socket
         /// </summary>
         private Socket _socket;
+
+        public string IP { get; set; }
+        public int Port { get; set; }
+        /// <summary>
+        /// 数据接收后处理程序
+        /// </summary>
+        public Func<List<byte>, byte[]> DataReceiveHandle { get; set; }
+        /// <summary>
+        /// 数据接收时验证是否接收完毕
+        /// </summary>
+        public Func<List<byte>, bool> DataCompleteVerify { get; set; }
+        /// <summary>
+        /// 每次接收的长度
+        /// </summary>
+        public int Capacity { get; set; }
+        /// <summary>
+        /// 接收超时
+        /// </summary>
+        public int ReceiveTimeout { get; set; }
+        /// <summary>
+        /// 发送超时
+        /// </summary>
+        public int SendTimeout { get; set; }
 
         /// <summary>
         /// 
@@ -69,13 +69,13 @@ namespace Hang.Net4.Web
                 _logger.Info("未设置数据接收完整性验证委托,将在接收{0}字节后完成数据接收", capacity);
             }
 
-            _ip = ip;
-            _port = port;
-            _dataReceiveHandle = dataReceiveHandle;
-            _dataCompleteVerify = dataCompleteVerify;
-            _capacity = capacity;
-            _receiveTimeout = receiveTimeout;
-            _sendTimeout = sendTimeout;
+            this.IP = ip;
+            Port = port;
+            DataReceiveHandle = dataReceiveHandle;
+            DataCompleteVerify = dataCompleteVerify;
+            Capacity = capacity;
+            ReceiveTimeout = receiveTimeout;
+            SendTimeout = sendTimeout;
         }
 
         ~SocketServer()
@@ -97,12 +97,12 @@ namespace Hang.Net4.Web
             try
             {
                 _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);//创建一个Socket对象，如果用UDP协议，则要用SocketTyype.Dgram类型的套接字
-                _socket.Bind(new IPEndPoint(IPAddress.Parse(_ip), _port));//绑定EndPoint对象
+                _socket.Bind(new IPEndPoint(IPAddress.Parse(IP), Port));//绑定EndPoint对象
                 _socket.Listen(0);//开始监听
             }
             catch (Exception ex)
             {
-                _logger.ErrorEx(string.Format("{0}:{1}, {2}", _ip, _port, ex.ToString()));
+                _logger.ErrorEx(string.Format("{0}:{1}, {2}", IP, Port, ex.ToString()));
             }
 
             Task.Factory.StartNew(() =>
@@ -135,7 +135,7 @@ namespace Hang.Net4.Web
                 }
             });
 
-            _logger.Info("SocketServer启动成功 {0}:{1}", _ip, _port);
+            _logger.Info("SocketServer启动成功 {0}:{1}", IP, Port);
         }
 
         /// <summary>
@@ -144,8 +144,8 @@ namespace Hang.Net4.Web
         /// <param name="client"></param>
         private void SocketAccept(Socket client)
         {
-            client.ReceiveTimeout = _receiveTimeout;
-            client.SendTimeout = _sendTimeout;
+            client.ReceiveTimeout = ReceiveTimeout;
+            client.SendTimeout = SendTimeout;
 
             try
             {
@@ -154,8 +154,8 @@ namespace Hang.Net4.Web
                     List<byte> data = new List<byte>();
                     while (true)//单次接收
                     {
-                        byte[] recvBytes = new byte[_capacity];
-                        int receiveLength = client.Receive(recvBytes, _capacity, SocketFlags.None);
+                        byte[] recvBytes = new byte[Capacity];
+                        int receiveLength = client.Receive(recvBytes, Capacity, SocketFlags.None);
                         if (receiveLength == 0)
                         {
                             if (data.Count() == 0)
@@ -168,12 +168,12 @@ namespace Hang.Net4.Web
                             }
                         }
                         data.AddRange(recvBytes.Take(receiveLength));
-                        if (_dataCompleteVerify == null || _dataCompleteVerify(data))
+                        if (DataCompleteVerify == null || DataCompleteVerify(data))
                         {
                             break;
                         }
                     }
-                    byte[] ret = _dataReceiveHandle(data);
+                    byte[] ret = DataReceiveHandle(data);
                     client.Send(ret, ret.Length, SocketFlags.None);
                 }
             }

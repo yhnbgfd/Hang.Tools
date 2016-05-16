@@ -10,14 +10,20 @@ namespace Hang.Net4.Web
 {
     public class WcfClient
     {
-        public T GetProxy<T>(string address)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TChannel"></typeparam>
+        /// <param name="address"></param>
+        /// <returns></returns>
+        public TChannel GetProxy<TChannel>(string address)
         {
             EndpointAddress endpoint = new EndpointAddress(address);
             Binding binding = new WSHttpBinding(SecurityMode.None)
             {
                 MaxReceivedMessageSize = long.MaxValue
             };
-            return ChannelFactory<T>.CreateChannel(binding, endpoint);
+            return ChannelFactory<TChannel>.CreateChannel(binding, endpoint);
         }
     }
 }
