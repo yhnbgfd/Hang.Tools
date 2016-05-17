@@ -1,23 +1,12 @@
 ﻿using Hang.Net4.Base.Attributes;
 using Hang.Net4.Base.Enums;
-using Hang.Net4.Base.Interfaces;
-using Hang.Net4.Utilities;
 using NLog;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Hang.Tools.Views.Pages
 {

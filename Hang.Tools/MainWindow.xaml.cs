@@ -21,7 +21,7 @@ namespace Hang.Tools
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ShowPage += NewTabItem;
+            ShowPage += AddNewTabItem;
 
             TabItem_Home.Content = new Frame
             {
@@ -31,7 +31,7 @@ namespace Hang.Tools
             };
         }
 
-        private void NewTabItem(string name, object obj)
+        private void AddNewTabItem(string name, object obj)
         {
             TabControl_Main.Items.Add(new TabItem
             {
