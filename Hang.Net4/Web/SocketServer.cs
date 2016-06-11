@@ -13,13 +13,8 @@ namespace Hang.Net4.Web
     public class SocketServer : IDisposable
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
-        private readonly object _lock = new object();
 
         private bool _disposed = false;
-        /// <summary>
-        /// 当前客户端连接数量
-        /// </summary>
-        private long _connCount = 0;
         /// <summary>
         /// Socket
         /// </summary>
@@ -124,13 +119,13 @@ namespace Hang.Net4.Web
                     {
                         var ep = (IPEndPoint)client.RemoteEndPoint;
 
-                        lock (_lock) _connCount++;
-                        _logger.Info("客户端连接({2}) : {0}:{1}", ep.Address, ep.Port, _connCount);
+                        //lock (_lock) _connCount++;
+                        _logger.Info("客户端连接 : {0}:{1}", ep.Address, ep.Port);
 
                         SocketAccept(client);
 
-                        lock (_lock) _connCount--;
-                        _logger.Info("客户端断开({2}) : {0}:{1}", ep.Address, ep.Port, _connCount);
+                        //lock (_lock) _connCount--;
+                        _logger.Info("客户端断开 : {0}:{1}", ep.Address, ep.Port);
                     });
                 }
             });
